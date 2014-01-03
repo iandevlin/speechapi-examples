@@ -14,4 +14,4 @@ At the moment this just means Chrome's implementation of the API which is prefix
 Examples
 ========
 
-- HTML5 Video Voice Control with the Web Speech API
+- [HTML5 Video Voice Control with the Web Speech API](https://github.com/iandevlin/speechapi-examples/tree/master/speechapi-video)
