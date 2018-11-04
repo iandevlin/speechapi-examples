@@ -26,7 +26,7 @@
 		// Simple function that checks existence of s in str
 		var userSaid = function(str, s) {
 			return str.indexOf(s) > -1;
-		}
+		};
 
 		// Highlights the relevant command that was recognised in the command list for display purposes
 		var highlightCommand = function(cmd) {
@@ -35,7 +35,7 @@
 			setTimeout(function() {
 				el.setAttribute('data-state', '');
 			}, 3000);
-		}
+		};
 
 		// Process the results when they are returned from the recogniser
 		rec.onresult = function(e) {
@@ -64,7 +64,23 @@
 		       				else if (userSaid(str, 'stop')) {
 		       					video.pause();
 		       					highlightCommand('vidStop');
-		       				}
+							   }
+							   
+							// If the user said 'speed' then parse it even further
+							else if (userSaid(str, 'speed')) {
+								// Check the current speed setting of the video
+								var speed = video.speed = 1;
+								// Increase the speed
+								if (userSaid(str, 'increase')) {
+									video.playbackRate += 0.5;
+									highlightCommand('vidSpdInc');
+								}
+								if (userSaid(str, 'decrease')) {
+									video.playbackRate -= 0.5;
+									highlightCommand('vidSpdDec');
+								}
+
+							}
 		       				// If the user said 'volume' then parse it even further
 		       				else if (userSaid(str, 'volume')) {
 		       					// Check the current volume setting of the video
@@ -102,12 +118,12 @@
 		var startRec = function() {
 			rec.start();
 			recStatus.innerHTML = 'recognising';
-		}
+		};
 		// Stop speech recognition
 		var stopRec = function() {
 			rec.stop();
 			recStatus.innerHTML = 'not recognising';
-		}
+		};
 		// Setup listeners for the start and stop recognition buttons
 		startRecBtn.addEventListener('click', startRec, false);
 		stopRecBtn.addEventListener('click', stopRec, false);
